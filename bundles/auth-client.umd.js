@@ -45,8 +45,10 @@
          * @return {?}
          */
         function () {
-            if (localStorage.getItem(this.tokenName)) {
-                this.authAction = "Logout";
+            /** @type {?} */
+            var jwtToken = localStorage.getItem(this.tokenName);
+            if (jwtToken) {
+                this.authAction = "Logout (" + (JSON.parse(atob(jwtToken.split('.')[1]))['acc_name']) + +")";
             }
             else {
                 this.authAction = "Login";
